@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #0077cc;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+#ratesTable {
+  margin-bottom: 2rem;
+}
+
+#favoritesSection {
+  background-color: #f0f0f0;
+  padding: 1rem;
+}

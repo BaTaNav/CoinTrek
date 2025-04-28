@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoinTrek - Exchange Rate Explorer</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <header>
+    <h1>CoinTrek</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Zoek valuta...">
+      <select id="filterRegion">
+        <option value="">Filter op regio</option>
+        <!-- Dynamisch vullen -->
+      </select>
+      <button id="sortButton">Sorteer</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="ratesTable">
+      <!-- Hier komt de dynamische tabel -->
+    </section>
+
+    <section id="favoritesSection">
+      <h2>Favorieten</h2>
+      <div id="favoritesList">
+        <!-- Hier verschijnen opgeslagen favorieten -->
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
