@@ -1,5 +1,6 @@
 let allRates = {}; // Globale variabele om originele data bij te houden
 let isSortedAscending = true; // Toggle voor sorteren
+import { addFavorite, removeFavorite, loadFavorites, getFavorites } from './favorites.js';
 
 export function renderRates(rates) {
   allRates = rates; // Bewaar volledige lijst
@@ -15,10 +16,29 @@ function updateDisplay(rateEntries) {
     const div = document.createElement('div');
     div.classList.add('rate-item');
     div.innerHTML = `
-      <strong>${currency}</strong>: ${value}
-      <button class="add-favorite" data-currency="${currency}">⭐</button>
+      <div class="rate-item">
+        <strong>${currency}</strong>: ${value}
+        <button class="add-favorite ${getFavorites().includes(currency) ? 'active' : ''}" data-currency="${currency}">
+          ${getFavorites().includes(currency) ? '✅' : '⭐'}
+        </button>
+      </div>
     `;
     table.appendChild(div);
+  });
+
+  // Eventlisteners koppelen na het toevoegen van elementen
+  document.querySelectorAll('.add-favorite').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currency = btn.dataset.currency;
+      const favorites = getFavorites();
+      if (favorites.includes(currency)) {
+        removeFavorite(currency);
+      } else {
+        addFavorite(currency);
+      }
+      loadFavorites();
+      updateDisplay(Object.entries(allRates)); 
+    });
   });
 }
 
@@ -51,7 +71,7 @@ export function setupSort() {
 // Filterfunctie (optioneel, bv. op eerste letter)
 export function setupFilter() {
   const filterSelect = document.getElementById('filterRegion');
-  
+
   // Vul de dropdown dynamisch met eerste letters
   const letters = [...new Set(Object.keys(allRates).map(code => code[0]))].sort();
   letters.forEach(letter => {
