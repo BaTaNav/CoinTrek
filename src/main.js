@@ -1,13 +1,20 @@
+import './style.css';
 import { fetchRates } from './api.js';
-import { renderRates, setupSearch, setupSort, setupFilter } from './ui.js';
+import { renderRates, setupSearch, setupSort } from './ui.js';
 import { loadFavorites } from './favorites.js';
 
-// Laad wisselkoersen bij het starten
+// Load exchange rates on startup
 document.addEventListener('DOMContentLoaded', async () => {
   const rates = await fetchRates();
-  renderRates(rates);
+
+  if (!rates || typeof rates !== 'object') {
+    console.error('Could not load valid exchange rates.');
+    return;
+  }
+
+  renderRates(rates); // Pass the rates object directly
   loadFavorites();
   setupSearch();
   setupSort();
-  setupFilter();
+  // setupFilter is now called from within renderRates
 });

@@ -1,13 +1,20 @@
-let allRates = {}; // Globale variabele om originele data bij te houden
-let isSortedAscending = true; // Toggle voor sorteren
+let allRates = {}; // Global variable to store original data
+let isSortedAscending = true; // Toggle for sorting
 import { addFavorite, removeFavorite, loadFavorites, getFavorites } from './favorites.js';
 
 export function renderRates(rates) {
-  allRates = rates; // Bewaar volledige lijst
+  // Make sure allRates is properly formatted as an object
+  allRates = typeof rates === 'object' && !Array.isArray(rates) 
+    ? rates 
+    : Object.fromEntries(rates);
+    
   updateDisplay(Object.entries(allRates));
+  
+  // Move setupFilter here to ensure it runs after allRates is populated
+  setupFilter();
 }
 
-// Update de weergegeven data
+// Update the displayed data
 function updateDisplay(rateEntries) {
   const table = document.getElementById('ratesTable');
   table.innerHTML = '';
@@ -16,17 +23,18 @@ function updateDisplay(rateEntries) {
     const div = document.createElement('div');
     div.classList.add('rate-item');
     div.innerHTML = `
-      <div class="rate-item">
-        <strong>${currency}</strong>: ${value}
-        <button class="add-favorite ${getFavorites().includes(currency) ? 'active' : ''}" data-currency="${currency}">
-          ${getFavorites().includes(currency) ? '✅' : '⭐'}
-        </button>
+      <div>
+        <strong>${currency}</strong>
+        <div class="value">${value}</div>
       </div>
+      <button class="add-favorite ${getFavorites().includes(currency) ? 'active' : ''}" data-currency="${currency}">
+        ${getFavorites().includes(currency) ? '✅' : '⭐'}
+      </button>
     `;
     table.appendChild(div);
   });
 
-  // Eventlisteners koppelen na het toevoegen van elementen
+  // Attach event listeners after adding elements
   document.querySelectorAll('.add-favorite').forEach(btn => {
     btn.addEventListener('click', () => {
       const currency = btn.dataset.currency;
@@ -42,7 +50,7 @@ function updateDisplay(rateEntries) {
   });
 }
 
-// Zoekfunctie
+// Search function
 export function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', (e) => {
@@ -54,7 +62,7 @@ export function setupSearch() {
   });
 }
 
-// Sorteerfunctie
+// Sort function
 export function setupSort() {
   const sortButton = document.getElementById('sortButton');
   sortButton.addEventListener('click', () => {
@@ -68,12 +76,17 @@ export function setupSort() {
   });
 }
 
-// Filterfunctie (optioneel, bv. op eerste letter)
-export function setupFilter() {
+// Filter function - moved to run after allRates is populated
+function setupFilter() {
   const filterSelect = document.getElementById('filterRegion');
+  
+  // Clear existing options first
+  filterSelect.innerHTML = '<option value="">All</option>';
 
-  // Vul de dropdown dynamisch met eerste letters
+  // Get unique first letters from currency codes
   const letters = [...new Set(Object.keys(allRates).map(code => code[0]))].sort();
+  
+  // Populate dropdown with first letters
   letters.forEach(letter => {
     const option = document.createElement('option');
     option.value = letter;

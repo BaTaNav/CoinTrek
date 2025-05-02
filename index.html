@@ -3,35 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoinTrek - Exchange Rate Explorer</title>
-  <link rel="stylesheet" href="/src/style.css">
+  <title>CoinTrek - Cryptocurrency Exchange Rates</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="src/style.css">
+  <script type="module" src="src/main.js"></script>
 </head>
 <body>
-  <header>
-    <h1>CoinTrek</h1>
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="Zoek valuta...">
-      <select id="filterRegion">
-        <option value="">Filter op regio</option>
-        <!-- Dynamisch vullen -->
-      </select>
-      <button id="sortButton">Sorteer</button>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <h1>Coin<span>Trek</span></h1>
+      </div>
+      <nav class="main-nav">
+        <a href="#dashboard" class="active">Dashboard</a>
+        <a href="#rates">Exchange Rates</a>
+        <a href="#favorites">Favorites</a>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <section id="ratesTable">
-      <!-- Hier komt de dynamische tabel -->
+  <section class="hero" id="dashboard">
+    <div class="hero-content">
+      <h1>Real-time Exchange Rates</h1>
+      <p>Track, compare, and save your favorite currency exchange rates with CoinTrek</p>
+    </div>
+  </section>
+
+  <main class="site-content">
+    <section class="dashboard-section" id="rates">
+      <div class="container">
+        <div class="section-header">
+          <h2>Exchange Rates</h2>
+          <p>Current rates compared to base currency (EUR)</p>
+        </div>
+        
+        <div class="controls-wrapper">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search currency...">
+          </div>
+          
+          <div class="filter-bar">
+            <select id="filterRegion">
+              <option value="">All Regions</option>
+            </select>
+          </div>
+          
+          <div class="sort-bar">
+            <button id="sortButton">Sort by Value</button>
+          </div>
+        </div>
+        
+        <div id="ratesTable" class="rates-grid"></div>
+      </div>
     </section>
 
-    <section id="favoritesSection">
-      <h2>Favorieten</h2>
-      <div id="favoritesList">
-        <!-- Hier verschijnen opgeslagen favorieten -->
+    <section class="dashboard-section light-section" id="favorites">
+      <div class="container">
+        <div class="section-header">
+          <h2>Your Favorites</h2>
+          <p>Quick access to currencies you follow</p>
+        </div>
+        <div id="favoritesList" class="favorites-grid"></div>
       </div>
     </section>
   </main>
 
-  <script type="module" src="/src/main.js"></script>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 CoinTrek. Real-time exchange rate tracking.</p>
+    </div>
+  </footer>
 </body>
 </html>
