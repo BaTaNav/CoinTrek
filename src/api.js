@@ -3,6 +3,30 @@ import { getCachedRates, cacheRates } from './cache.js';
 const API_KEY = '7cac3cdb9959c5fd240c7ccb'; // API key
 const BASE_CURRENCY = 'EUR'; //basis valuta in dit geval euro
 
+// Add currency regions for common currencies
+const currencyInfo = {
+  USD: { region: "North America", description: "US Dollar" },
+  EUR: { region: "Europe", description: "Euro" },
+  GBP: { region: "Europe", description: "British Pound" },
+  JPY: { region: "Asia", description: "Japanese Yen" },
+  AUD: { region: "Oceania", description: "Australian Dollar" },
+  CAD: { region: "North America", description: "Canadian Dollar" },
+  CHF: { region: "Europe", description: "Swiss Franc" },
+  CNY: { region: "Asia", description: "Chinese Yuan" },
+  INR: { region: "Asia", description: "Indian Rupee" },
+  NZD: { region: "Oceania", description: "New Zealand Dollar" },
+  SGD: { region: "Asia", description: "Singapore Dollar" },
+  HKD: { region: "Asia", description: "Hong Kong Dollar" },
+  SEK: { region: "Europe", description: "Swedish Krona" },
+  NOK: { region: "Europe", description: "Norwegian Krone" },
+  MXN: { region: "North America", description: "Mexican Peso" },
+  BRL: { region: "South America", description: "Brazilian Real" },
+  ZAR: { region: "Africa", description: "South African Rand" },
+  RUB: { region: "Europe", description: "Russian Ruble" },
+  TRY: { region: "Europe", description: "Turkish Lira" },
+  SAR: { region: "Middle East", description: "Saudi Riyal" }
+};
+
 export async function fetchRates() {
   const cached = getCachedRates();
   if (cached) {
@@ -25,10 +49,15 @@ export async function fetchRates() {
     }
 
     const enrichedRates = Object.entries(json.conversion_rates).reduce((acc, [code, value]) => {
+      const info = currencyInfo[code] || { 
+        region: "Unknown", 
+        description: `Currency for ${code}` 
+      };
+      
       acc[code] = {
         value,
-        description: `Currency for ${code}`,
-        region: 'Unknown'
+        description: info.description,
+        region: info.region
       };
       return acc;
     }, {});

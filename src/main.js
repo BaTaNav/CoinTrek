@@ -174,3 +174,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Add active class to nav items based on scroll position
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  function highlightNavItem() {
+    let scrollPosition = window.scrollY;
+    
+    // Add some offset for better UX
+    scrollPosition += 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        // Remove active class from all nav items
+        navItems.forEach(item => item.classList.remove('active'));
+        
+        // Add active class to corresponding nav item
+        const correspondingNavItem = document.querySelector(`.nav-item[href="#${sectionId}"]`);
+        if (correspondingNavItem) {
+          correspondingNavItem.classList.add('active');
+        }
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', highlightNavItem);
+  
+  // Also add click event listeners for smooth scrolling
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        // Smooth scroll to section
+        window.scrollTo({
+          top: targetSection.offsetTop - 80, // Offset for header
+          behavior: 'smooth'
+        });
+        
+        // Update active class
+        navItems.forEach(navItem => navItem.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Close mobile menu if open
+        const mainNav = document.querySelector('.main-nav');
+        if (mainNav && mainNav.classList.contains('show')) {
+          mainNav.classList.remove('show');
+        }
+      }
+    });
+  });
+});
