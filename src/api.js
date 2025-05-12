@@ -11,24 +11,30 @@ export async function fetchRates() {
   }
 
   try {
-    console.log('Gegevens ophalen van ExchangeRate API');
     const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${BASE_CURRENCY}`;
     const response = await fetch(url);
-
     if (!response.ok) {
       console.error('API response niet OK:', response.status);
       return null;
     }
 
     const json = await response.json();
-
-    if (json.result !== 'success' || typeof json.conversion_rates !== 'object') {
+    if (json.result !== 'success') {
       console.error('Ongeldig API antwoord:', json);
       return null;
     }
 
-    cacheRates(json.conversion_rates);
-    return json.conversion_rates;
+    const enrichedRates = Object.entries(json.conversion_rates).reduce((acc, [code, value]) => {
+      acc[code] = {
+        value,
+        description: `Currency for ${code}`,
+        region: 'Unknown'
+      };
+      return acc;
+    }, {});
+
+    cacheRates(enrichedRates);
+    return enrichedRates;
 
   } catch (error) {
     console.error('Fout bij ophalen API:', error);
