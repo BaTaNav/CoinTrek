@@ -25,7 +25,8 @@ function updateDisplay(rateEntries) {
     div.innerHTML = `
       <div>
         <strong>${currency}</strong>
-        <div class="value">${value}</div>
+        <div class="value">${value.value}</div>
+
       </div>
       <button class="add-favorite ${getFavorites().includes(currency) ? 'active' : ''}" data-currency="${currency}">
         ${getFavorites().includes(currency) ? '✅' : '⭐'}
