@@ -18,6 +18,16 @@ export function renderRates(rates) {
 function updateDisplay(rateEntries) {
   const table = document.getElementById('ratesTable');
   table.innerHTML = '';
+  
+  // Add table header
+  const header = document.createElement('div');
+  header.className = 'table-header';
+  header.innerHTML = `
+    <div class="header-cell">Currency</div>
+    <div class="header-cell">Exchange Rate</div>
+    <div class="header-cell">Actions</div>
+  `;
+  table.appendChild(header);
 
   rateEntries.forEach(([currency, value]) => {
     const div = document.createElement('div');

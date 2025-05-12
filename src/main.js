@@ -134,3 +134,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  
+  if (mobileMenuToggle && mainNav) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('show');
+    });
+  }
+  
+  // Update theme toggle button
+  const themeToggle = document.getElementById('theme-toggle');
+  const lightIcon = themeToggle?.querySelector('.light-icon');
+  const darkIcon = themeToggle?.querySelector('.dark-icon');
+  
+  function updateThemeToggle() {
+    const isDarkTheme = document.body.classList.contains('dark-theme');
+    if (lightIcon && darkIcon) {
+      lightIcon.style.display = isDarkTheme ? 'none' : 'inline';
+      darkIcon.style.display = isDarkTheme ? 'inline' : 'none';
+    }
+  }
+  
+  // Initial state
+  updateThemeToggle();
+  
+  // Update on theme change
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      updateThemeToggle();
+      
+      // Save preference to localStorage
+      const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+    });
+  }
+});
