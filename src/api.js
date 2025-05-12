@@ -1,7 +1,7 @@
 import { getCachedRates, cacheRates } from './cache.js';
 
-const API_KEY = '7cac3cdb9959c5fd240c7ccb'; // <-- vervang dit met jouw echte key
-const BASE_CURRENCY = 'EUR';
+const API_KEY = '7cac3cdb9959c5fd240c7ccb'; // API key
+const BASE_CURRENCY = 'EUR'; //basis valuta in dit geval euro
 
 export async function fetchRates() {
   const cached = getCachedRates();

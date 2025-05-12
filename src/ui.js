@@ -1,20 +1,20 @@
-let allRates = {}; // Global variable to store original data
-let isSortedAscending = true; // Toggle for sorting
+let allRates = {}; // Globale variabele om alle wisselkoersen op te slaan
+let isSortedAscending = true; // toggle om te sorteren
 import { addFavorite, removeFavorite, loadFavorites, getFavorites } from './favorites.js';
 
 export function renderRates(rates) {
-  // Make sure allRates is properly formatted as an object
+  // zorg ervoor dat alle wissekoerssen goed zijn geformatteerd als een object
   allRates = typeof rates === 'object' && !Array.isArray(rates) 
     ? rates 
     : Object.fromEntries(rates);
     
   updateDisplay(Object.entries(allRates));
   
-  // Move setupFilter here to ensure it runs after allRates is populated
+
   setupFilter();
 }
 
-// Update the displayed data
+// Update de weergegeven data
 function updateDisplay(rateEntries) {
   const table = document.getElementById('ratesTable');
   table.innerHTML = '';
@@ -34,7 +34,7 @@ function updateDisplay(rateEntries) {
     table.appendChild(div);
   });
 
-  // Attach event listeners after adding elements
+ 
   document.querySelectorAll('.add-favorite').forEach(btn => {
     btn.addEventListener('click', () => {
       const currency = btn.dataset.currency;
@@ -50,7 +50,7 @@ function updateDisplay(rateEntries) {
   });
 }
 
-// Search function
+// zoek functie
 export function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', (e) => {
@@ -62,7 +62,7 @@ export function setupSearch() {
   });
 }
 
-// Sort function
+// sorteer functie
 export function setupSort() {
   const sortButton = document.getElementById('sortButton');
   sortButton.addEventListener('click', () => {
@@ -76,7 +76,7 @@ export function setupSort() {
   });
 }
 
-// Filter function - moved to run after allRates is populated
+
 function setupFilter() {
   const filterSelect = document.getElementById('filterRegion');
   

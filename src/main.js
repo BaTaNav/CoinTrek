@@ -3,7 +3,7 @@ import { fetchRates } from './api.js';
 import { renderRates, setupSearch, setupSort } from './ui.js';
 import { loadFavorites } from './favorites.js';
 
-// Load exchange rates on startup
+// wisselkoersen laden bij startup
 document.addEventListener('DOMContentLoaded', async () => {
   const rates = await fetchRates();
 
