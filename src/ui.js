@@ -4,12 +4,12 @@ import { addFavorite, removeFavorite, loadFavorites, getFavorites } from './favo
 
 export function renderRates(rates) {
   // zorg ervoor dat alle wissekoerssen goed zijn geformatteerd als een object
-  allRates = typeof rates === 'object' && !Array.isArray(rates) 
-    ? rates 
+  allRates = typeof rates === 'object' && !Array.isArray(rates)
+    ? rates
     : Object.fromEntries(rates);
-    
+
   updateDisplay(Object.entries(allRates));
-  
+
 
   setupFilter();
 }
@@ -34,7 +34,7 @@ function updateDisplay(rateEntries) {
     table.appendChild(div);
   });
 
- 
+
   document.querySelectorAll('.add-favorite').forEach(btn => {
     btn.addEventListener('click', () => {
       const currency = btn.dataset.currency;
@@ -45,7 +45,7 @@ function updateDisplay(rateEntries) {
         addFavorite(currency);
       }
       loadFavorites();
-      updateDisplay(Object.entries(allRates)); 
+      updateDisplay(Object.entries(allRates));
     });
   });
 }
@@ -79,13 +79,13 @@ export function setupSort() {
 
 function setupFilter() {
   const filterSelect = document.getElementById('filterRegion');
-  
+
   // Clear existing options first
   filterSelect.innerHTML = '<option value="">All</option>';
 
   // Get unique first letters from currency codes
   const letters = [...new Set(Object.keys(allRates).map(code => code[0]))].sort();
-  
+
   // Populate dropdown with first letters
   letters.forEach(letter => {
     const option = document.createElement('option');
