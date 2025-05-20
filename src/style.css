@@ -94,7 +94,7 @@ a:hover {
 
 .table-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 100px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 60px;
   background-color: var(--primary);
   color: white;
   font-weight: 600;
@@ -111,7 +111,7 @@ a:hover {
 
 .rate-item {
   display: grid;
-  grid-template-columns: 1fr 1fr 100px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 60px; 
   align-items: center;
   background-color: var(--light-bg);
   border-bottom: 1px solid var(--border);

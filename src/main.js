@@ -109,31 +109,7 @@ function showToast(message) {
   }, 3000);
 }
 
-// Theme Toggle Functionality
-document.addEventListener('DOMContentLoaded', () => {
-  const themeSwitch = document.getElementById('theme-switch');
-  
-  // Check for saved theme preference or prefer-color-scheme
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  // Set initial theme based on saved preference or system preference
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    document.body.classList.add('dark-theme');
-    themeSwitch.checked = true;
-  }
-  
-  // Toggle theme when switch is clicked
-  themeSwitch.addEventListener('change', function() {
-    if (this.checked) {
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
-    }
-  });
-});
+
 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', () => {
