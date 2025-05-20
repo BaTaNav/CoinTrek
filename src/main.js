@@ -13,12 +13,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   renderRates(rates);
-  loadFavorites();
   setupSearch();
   setupSort();
-  
-  // Setup auto-refresh for real-time updates
   setupAutoRefresh();
+  setupFavoritesObserver();
 });
 
 // Setup auto-refresh for exchange rates
@@ -72,7 +70,7 @@ function setupAutoRefresh() {
       showToast('Exchange rates updated');
     }
     
-    // Reset button
+    // Refresh button
     refreshButton.textContent = 'Refresh Now';
     refreshButton.disabled = false;
     
@@ -181,6 +179,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   window.addEventListener('scroll', highlightNavItem);
+
+
+
+
+  function setupFavoritesObserver() {
+  const favoritesSection = document.getElementById('favorites');
+  if (!favoritesSection) return;
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadFavorites(); // jouw bestaande functie
+        observer.unobserve(entry.target); // maar één keer uitvoeren
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.25, // pas als 25% zichtbaar is
+  });
+
+  observer.observe(favoritesSection);
+}
   
   // Also add click event listeners for smooth scrolling
   navItems.forEach(item => {
