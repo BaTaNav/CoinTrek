@@ -10,10 +10,10 @@ export function renderRates(rates) {
     ? rates
     : Object.fromEntries(rates);
 
-  // Apply any existing filters/sorts
+
   let rateEntries = Object.entries(allRates);
 
-  // Apply any saved filters or sorting
+
   rateEntries = applyFiltersAndSort(rateEntries);
 
   updateDisplay(rateEntries);
@@ -116,8 +116,6 @@ function updateDisplay(rateEntries) {
 
       // Update favorites list
       loadFavorites();
-
-      // Just update this button's state without redrawing the whole table
       btn.classList.toggle('active');
       btn.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

@@ -43,16 +43,16 @@
 
 | Vereiste                        | Bestand         | Lijn(en) |
 |------------------------------- |------------------|----------|
-| DOM manipulatie                | `main.js`, `ui.js`, `favorites.js` | 8, 62, 4 |
+| DOM manipulatie                | `main.js`, `ui.js`, `favorites.js` | 8, 62, 3 |
 | Template literals              | `ui.js`, `main.js` | 72, 33 |
 | Arrow functions                | `main.js`, `ui.js` | 11, 148 |
-| Ternary operator               | `ui.js` | 81 |
-| Fetch & Async Await            | `api.js`, `main.js` | 25, 8 |
-| JSON verwerking                | `api.js` | 29–45 |
+| Ternary operator               | `ui.js` | 83 |
+| Fetch & Async Await            | `api.js`, `main.js` | 30, 8 |
+| JSON verwerking                | `api.js` | 45 - 63 |
 | localStorage                   | `cache.js`, `favorites.js` | 7, 22 |
 | Responsive layout (CSS Grid)   | `style.css` | 88, 400+ |
-| Sorteren en filteren           | `ui.js` | 89–108 |
-| Observer API                   | `main.js` | 186-203 |
+| Sorteren en filteren           | `ui.js` | 23 - 61 |
+| Observer API                   | `main.js` | 182 - 200 |
 
 
 ## 🖼 Screenshots
