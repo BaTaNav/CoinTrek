@@ -1,7 +1,7 @@
 let allRates = {}; // Globale variabele om alle wisselkoersen op te slaan
-let isSortedAscending = true; // toggle om te sorteren
-let currentFilterValue = ''; // Track current filter
-let currentSearchValue = ''; // Track current search
+let isSortedAscending = true; 
+let currentFilterValue = ''; 
+let currentSearchValue = ''; 
 import { addFavorite, removeFavorite, loadFavorites, getFavorites } from './favorites.js';
 
 export function renderRates(rates) {

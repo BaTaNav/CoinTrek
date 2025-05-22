@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Setup auto-refresh for exchange rates
 function setupAutoRefresh() {
-  const refreshInterval = 60000; // Refresh every 60 seconds
+  const refreshInterval = 60000; // elke minuut reshreshen
   let refreshTimer;
   let refreshCountdown = refreshInterval / 1000;
   
@@ -86,19 +86,19 @@ function setupAutoRefresh() {
   });
 }
 
-// Show toast notification
+// show toast met AI geschreven 
 function showToast(message) {
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.textContent = message;
   document.body.appendChild(toast);
   
-  // Show toast with animation
+ 
   setTimeout(() => {
     toast.classList.add('show');
   }, 10);
   
-  // Auto hide after 3 seconds
+  
   setTimeout(() => {
     toast.classList.remove('show');
     setTimeout(() => {
@@ -133,10 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Initial state
+
   updateThemeToggle();
   
-  // Update on theme change
+  // Update wanneer theme veranderd
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
@@ -148,8 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-// Add active class to nav items based on scroll position
 document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.nav-item');
@@ -157,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function highlightNavItem() {
     let scrollPosition = window.scrollY;
     
-    // Add some offset for better UX
     scrollPosition += 100;
     
     sections.forEach(section => {
@@ -196,13 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, {
     root: null,
-    threshold: 0.25, // pas als 25% zichtbaar is
+    threshold: 0.25, //(favorieten tonen bij 25% zichtbaarheid)
   });
 
   observer.observe(favoritesSection);
 }
   
-  // Also add click event listeners for smooth scrolling
+  // klik event voor navigatie smooth scroll
   navItems.forEach(item => {
     item.addEventListener('click', function(e) {
       e.preventDefault();
@@ -213,15 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetSection) {
         // Smooth scroll to section
         window.scrollTo({
-          top: targetSection.offsetTop - 80, // Offset for header
+          top: targetSection.offsetTop - 80,
           behavior: 'smooth'
         });
-        
-        // Update active class
         navItems.forEach(navItem => navItem.classList.remove('active'));
         this.classList.add('active');
         
-        // Close mobile menu if open
+        // mobiele menu sluiten als het open is
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mainNav = document.querySelector('.main-nav');
         if (mainNav && mainNav.classList.contains('show')) {
           mainNav.classList.remove('show');

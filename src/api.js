@@ -3,7 +3,7 @@ import { getCachedRates, cacheRates } from './cache.js';
 const API_KEY = '7cac3cdb9959c5fd240c7ccb'; // API key
 const BASE_CURRENCY = 'EUR'; //basis valuta in dit geval euro
 
-// Add currency regions for common currencies
+// bekende regio's en beschrijvingen van de valuta toegevoegd
 const currencyInfo = {
   USD: { region: "North America", description: "US Dollar" },
   EUR: { region: "Europe", description: "Euro" },
@@ -28,13 +28,13 @@ const currencyInfo = {
 };
 
 export async function fetchRates() {
-  const cached = getCachedRates();
+  const cached = getCachedRates(); // kijk of de gegevens in de cache staan
   if (cached) {
-    console.log('✅ Gegevens geladen uit cache');
+    console.log('Gegevens geladen uit cache');
     return cached;
   }
 
-  try {
+  try { // api aanroepen om de gegevens op te halen 
     const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${BASE_CURRENCY}`;
     const response = await fetch(url);
     if (!response.ok) {
@@ -62,7 +62,7 @@ export async function fetchRates() {
       return acc;
     }, {});
 
-    cacheRates(enrichedRates);
+    cacheRates(enrichedRates); // cachen
     return enrichedRates;
 
   } catch (error) {
