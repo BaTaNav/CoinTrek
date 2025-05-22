@@ -23,8 +23,8 @@
 
 1. Clone de repo:
    ```bash
-   git clone https://github.com/jouwgebruikersnaam/coingapp.git
-   cd coingapp
+   git clone https://github.com/BaTaNav/CoinTrek.git
+   cd CoinTrek
    ```
 
 2. Installeer dependencies:
