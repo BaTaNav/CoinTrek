@@ -1,9 +1,9 @@
 
-# CoinTrek – Real-time Exchange Rate Tracker 💱
+# CoinTrek – Real-time Exchange Rate Tracker
 
-**CoinTrek** is een interactieve Single Page Webapplicatie waarmee gebruikers real-time wisselkoersen kunnen bekijken, filteren, sorteren en opslaan als favorieten. Gebouwd met moderne JavaScript en de ExchangeRate API.
+**CoinTrek** is een interactieve Single Page Webapplicatie waarmee gebruikers real-time wisselkoersen kunnen bekijken, filteren, sorteren en opslaan als favorieten. Gebouwd met JavaScript en de ExchangeRate API.
 
-## 📌 Functionaliteiten
+## Functionaliteiten
 
 - Real-time wisselkoersen laden via externe API
 - Zoekfunctie en sorteerknop op wisselkoerswaarde
@@ -13,13 +13,13 @@
 - Auto-refresh met countdown timer
 - Responsive design met een professioneel UI
 
-## 🔌 Gebruikte API
+## Gebruikte API
 
 - **ExchangeRate API**  
   Endpoint: `https://v6.exchangerate-api.com/v6/<API_KEY>/latest/EUR`  
   Documentatie: [https://www.exchangerate-api.com](https://www.exchangerate-api.com)
 
-## ⚙️ Installatiehandleiding
+## Installatiehandleiding
 
 1. Clone de repo:
    ```bash
@@ -39,7 +39,7 @@
 
 4. Open in browser op: `http://localhost:5173`
 
-## 📚 Technische vereisten & waar ze te vinden zijn
+## Technische vereisten & waar ze te vinden zijn
 
 | Vereiste                        | Bestand         | Lijn(en) |
 |------------------------------- |------------------|----------|
@@ -57,9 +57,14 @@
 
 ## 🖼 Screenshots
 
-> Voeg hier enkele screenshots toe van de interface in light/dark mode, mobiel en desktop.
+![alt text](image.png)
 
 ## 📘 Bronnen
 
 - ExchangeRate API
 - MDN Web Docs
+- https://www.exchangerate-api.com/docs/overview
+- https://stackoverflow.com/questions/66902719/how-do-i-store-my-selected-favorites-in-localstorage-javascript
+- https://www.w3schools.com/jsrEF/default.asp
+- https://chatgpt.com/share/682f0163-367c-8000-ac30-8cb6b049b408
+
