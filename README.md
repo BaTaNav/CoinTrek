@@ -55,7 +55,7 @@
 | Observer API                   | `main.js` | 182 - 200 |
 
 
-## 🖼 Screenshots
+## Screenshots
 
 ![alt text](image.png)
 
@@ -74,7 +74,7 @@
 ![alt text](image-6.png)
 
 
-## 📘 Bronnen
+## Bronnen
 
 - ExchangeRate API
 - MDN Web Docs
